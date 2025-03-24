@@ -24,7 +24,6 @@ function App() {
         <Hero/>
       </section>
       <section id="about" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl">ABOUT</h2>
         {/* Your content here */}
         <About/>
       </section>
