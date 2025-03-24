@@ -15,11 +15,11 @@ jobs:
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: "npm"
+          node-version: '18'  # Ensure node version is a string
+          cache: 'npm'
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci  # Use npm ci for a clean install
 
       - name: 🏗️ Build project
         run: npm run build
@@ -29,4 +29,4 @@ jobs:
         with:
           branch: gh-pages  # Deploy to gh-pages branch
           folder: dist       # Vite's output folder
-
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
