@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
+      transitionDuration: {
+        '2000': '2000ms',
+      }
+    },
   },
   plugins: [],
+  darkMode: 'class',
 }
