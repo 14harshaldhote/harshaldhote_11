@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/harshaldhote_11/', // Change this to match your repository name
+  base: '/', // Change this to '/' for Vercel deployment
   plugins: [react()],
   optimizeDeps: {
-    include: ['lucide-react'] // Include Lucide for optimization
+    include: ['lucide-react'] 
   },
   build: {
     sourcemap: true,
