@@ -17,12 +17,10 @@ export default function VerticalNavigation() {
   ];
   
   useEffect(() => {
-    // Clean up previous observer if it exists
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
     
-    // Initialize observer with options
     const options = {
       root: null,
       rootMargin: '0px',
@@ -30,7 +28,6 @@ export default function VerticalNavigation() {
     };
     
     const observer = new IntersectionObserver((entries) => {
-      // Don't update active section while manually scrolling
       if (!isScrolling) {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -40,33 +37,27 @@ export default function VerticalNavigation() {
       }
     }, options);
     
-    // Observe all sections
     sections.forEach(section => {
       const element = document.getElementById(section.id);
       if (element) observer.observe(element);
     });
     
-    // Store observer for cleanup
     observerRef.current = observer;
     
-    // Add scroll event listener for smoother transitions
     const handleScroll = () => {
-      // Clear previous timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
       
       setIsScrolling(true);
       
-      // Set a timeout to mark scrolling as finished
       scrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
-      }, 100); // Adjust this value if needed
+      }, 100);
     };
     
     window.addEventListener('scroll', handleScroll);
     
-    // Clean up on unmount
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
@@ -84,27 +75,21 @@ export default function VerticalNavigation() {
     setIsScrolling(true);
     setActiveSection(sectionId);
     
-    // Get the target element
     const targetElement = document.getElementById(sectionId);
     if (!targetElement) return;
     
-    // Get the current scroll position
     const startPosition = window.pageYOffset;
-    // Get the target position (with a slight offset for better visibility)
     const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
-    // Calculate distance
     const distance = targetPosition - startPosition;
     
-    // Implement custom smooth scroll with easing
     let start = null;
-    const duration = 300; // Longer duration for smoother scroll
+    const duration = 300;
     
     function animation(currentTime) {
       if (start === null) start = currentTime;
       const timeElapsed = currentTime - start;
       const progress = Math.min(timeElapsed / duration, 1);
       
-      // Easing function (easeInOutCubic for smoother motion)
       const ease = progress < 0.5 
         ? 4 * progress * progress * progress 
         : 1 - Math.pow(-2 * progress + 2, 3) / 2;
@@ -114,7 +99,6 @@ export default function VerticalNavigation() {
       if (timeElapsed < duration) {
         requestAnimationFrame(animation);
       } else {
-        // Scrolling finished
         setTimeout(() => {
           setIsScrolling(false);
         }, 100);
@@ -125,23 +109,23 @@ export default function VerticalNavigation() {
   };
   
   return (
-    <div className="fixed left-8 top-1/2 -translate-y-1/2 h-96 flex items-center">
+    <div className="fixed left-2 sm:left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 h-72 sm:h-80 md:h-88 lg:h-96 flex items-center z-50">
       <div className="relative h-full flex flex-col items-center">
-        {/* Vertical line with gradient effect - centered precisely */}
+        {/* Vertical line */}
         <div className="absolute h-full w-0.5 left-1/2 -translate-x-1/2 bg-gradient-to-b from-transparent via-gray-600 to-transparent dark:from-transparent dark:via-gray-400 dark:to-transparent"></div>
         
-        {/* Active section indicator - properly aligned with the dots */}
+        {/* Active section indicator */}
         <div 
-          className="absolute w-1 rounded-full transition-all duration-500 ease-in-out left-1/2 -translate-x-1/2"
+          className="absolute w-0.5 sm:w-1 rounded-full transition-all duration-500 ease-in-out left-1/2 -translate-x-1/2"
           style={{
-            height: '40px',
-            top: `calc(${sections.findIndex(s => s.id === activeSection) * 20}% - 20px)`,
+            height: '30px',
+            top: `calc(${sections.findIndex(s => s.id === activeSection) * 20}% - 15px)`,
             backgroundColor: 'var(--accent-primary)',
             boxShadow: '0 0 10px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.2)'
           }}
         ></div>
         
-        {/* Section dots - evenly distributed */}
+        {/* Section dots */}
         <div className="h-full w-full flex flex-col justify-between relative z-10">
           {sections.map((section) => (
             <div 
@@ -151,10 +135,10 @@ export default function VerticalNavigation() {
               onMouseLeave={() => setHoveredSection(null)}
               style={{ transition: 'all 0.5s ease-in-out' }}
             >
-              {/* Dot - centered exactly */}
+              {/* Dot */}
               <button
                 onClick={() => handleDotClick(section.id)}
-                className="w-4 h-4 rounded-full transition-all duration-500 flex items-center justify-center overflow-hidden mx-auto"
+                className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full transition-all duration-500 flex items-center justify-center overflow-hidden mx-auto"
                 style={{
                   backgroundColor: activeSection === section.id 
                     ? 'var(--accent-primary)' 
@@ -170,10 +154,10 @@ export default function VerticalNavigation() {
                 )}
               </button>
               
-              {/* Label only shows on hover or active state */}
-              <div className="overflow-hidden absolute left-6">
+              {/* Label */}
+              <div className="overflow-hidden absolute left-4 sm:left-5 md:left-6">
                 <span 
-                  className="ml-3 inline-block transition-all duration-100 whitespace-nowrap"
+                  className="ml-2 sm:ml-3 text-xs sm:text-sm md:text-base inline-block transition-all duration-100 whitespace-nowrap"
                   style={{
                     color: activeSection === section.id 
                       ? 'var(--accent-primary)' 
@@ -186,7 +170,7 @@ export default function VerticalNavigation() {
                     textShadow: activeSection === section.id 
                       ? '0 0 8px rgba(255, 255, 255, 0.4)' 
                       : 'none',
-                    pointerEvents: 'none' // Prevents the label from interfering with hover states
+                    pointerEvents: 'none'
                   }}
                 >
                   {section.label}

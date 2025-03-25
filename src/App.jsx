@@ -14,45 +14,36 @@ import ScrollToTopButton from './components/common/ScrollToTopButton';
 
 function App() {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <ThemeToggle />
       <VerticalNavigation />
       
-      <section id="me" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl">ME</h2>
-        {/* Your content here */}
+      <section id="me" className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-8 lg:px-16">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-0">ME</h2>
         <Hero/>
       </section>
-      <section id="about" className="min-h-screen flex items-center justify-center">
-        {/* Your content here */}
+
+      <section id="about" className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 lg:px-16">
         <About/>
       </section>
       
-      <section id="work" className="min-h-screen flex items-center justify-center">
-        {/* Your content here */}
+      <section id="work" className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 lg:px-16">
         <Work/>
       </section>
       
-      <section id="skill" className="min-h-screen flex items-center justify-center">
-        {/* Your content here */}
+      <section id="skill" className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 lg:px-16">
         <Skills/>
       </section>
       
-      <section id="project" className="min-h-screen flex items-center justify-center">
-        {/* Your content here */}
+      <section id="project" className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 lg:px-16">
         <Projects/>
       </section>
       
-      <section id="education" className="min-h-screen flex items-center justify-center">
-        {/* Your content here */}
+      <section id="education" className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 lg:px-16">
         <Education/>
       </section>
 
-
       <ScrollToTopButton/>
-
-      
-      
     </div>
   );
 }

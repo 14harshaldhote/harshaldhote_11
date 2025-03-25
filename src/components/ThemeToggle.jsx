@@ -60,10 +60,10 @@ function ThemeToggle() {
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 z-50">
       <button
         onClick={toggleTheme}
-        className="relative p-1 rounded-full w-14 h-7 flex items-center justify-between transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        className="relative p-0.5 sm:p-1 rounded-full w-10 sm:w-12 md:w-14 h-5 sm:h-6 md:h-7 flex items-center justify-between transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         style={{
           backgroundColor: isDarkMode ? '#1a1a1a' : '#f0f0f0',
           border: `1px solid ${isDarkMode ? '#444444' : '#dddddd'}`
@@ -72,7 +72,7 @@ function ThemeToggle() {
         disabled={isAnimating}
       >
         {/* Moon icon (dark mode) - positioned at the start */}
-        <div className="flex items-center justify-center h-full pl-1.5 z-10">
+        <div className="flex items-center justify-center h-full pl-1 sm:pl-1.5 z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ function ThemeToggle() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-3.5 h-3.5 transition-opacity duration-300"
+            className="w-2.5 sm:w-3 md:w-3.5 h-2.5 sm:h-3 md:h-3.5 transition-opacity duration-300"
             style={{
               opacity: isDarkMode ? 1 : 0,
               color: '#f0c420'
@@ -93,16 +93,16 @@ function ThemeToggle() {
         
         {/* Toggle knob with correct positioning */}
         <span
-          className="absolute rounded-full w-5 h-5 shadow-md transition-transform duration-300 ease-in-out"
+          className="absolute rounded-full w-4 sm:w-4.5 md:w-5 h-4 sm:h-4.5 md:h-5 shadow-md transition-transform duration-300 ease-in-out"
           style={{
             backgroundColor: isDarkMode ? '#ffffff' : '#121212',
-            transform: isDarkMode ? 'translateX(0)' : 'translateX(7px)',
-            left: isDarkMode ? '3px' : '50%',
+            transform: isDarkMode ? 'translateX(0)' : 'translateX(5px) sm:translateX(6px) md:translateX(7px)',
+            left: isDarkMode ? '2px sm:2.5px md:3px' : '45% sm:48% md:50%',
           }}
         />
         
         {/* Sun icon (light mode) - positioned at the end */}
-        <div className="flex items-center justify-center h-full pr-1.5 z-10">
+        <div className="flex items-center justify-center h-full pr-1 sm:pr-1.5 z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -111,7 +111,7 @@ function ThemeToggle() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-3.5 h-3.5 transition-opacity duration-300"
+            className="w-2.5 sm:w-3 md:w-3.5 h-2.5 sm:h-3 md:h-3.5 transition-opacity duration-300"
             style={{
               opacity: isDarkMode ? 0 : 1,
               color: '#f0c420'

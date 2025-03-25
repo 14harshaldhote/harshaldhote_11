@@ -1,4 +1,3 @@
-
 // Projects.jsx
 import React from 'react';
 import SectionHeading from '../common/SectionHeading';
@@ -6,11 +5,11 @@ import ProjectCard from '../common/ProjectCard';
 
 const Projects = () => {
   return (
-    <section id="project" className="min-h-screen py-20 flex flex-col items-center">
-      <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <section id="project" className="min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col items-center">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading title="Projects" />
         
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
           <ProjectCard 
             title="APS Portal: Employee Management System"
             period="2024 – Present"
@@ -30,7 +29,7 @@ const Projects = () => {
             technologies={["SpringAI", "React-Vite", "Tesseract", "SpringBoot", "JWT", "openCV", "Java"]}
             description={[
               "Developed a web-based data extraction and quality assurance system using Spring Boot and React Vite, improving workflow efficiency, tracking ongoing projects, and optimizing task management processes",
-              "Implemented role-based access control (RBAC) with JWT for secure user management, enhancing data security",
+              "Implemented role-based access control (RBAC) with JWT for secure user management, enhancing data security", 
               "Integrated Tesseract OCR for automated data extraction, with plans to incorporate AI-driven quality checks to further enhance accuracy and efficiency over large datasets",
               "Prepared the software for future deployment on AWS, designing for reliability, scalability, and growth potential"
             ]}
