@@ -37,9 +37,12 @@ function ThemeToggle() {
     document.documentElement.classList.toggle('dark-theme', isDark);
     document.documentElement.classList.toggle('light-theme', !isDark);
     
-    // You can also set CSS variables for more flexible theming
-    document.documentElement.style.setProperty('--bg-color', isDark ? '#121212' : '#ffffff');
-    document.documentElement.style.setProperty('--text-color', isDark ? '#ffffff' : '#121212');
+    // Set CSS variables for theming
+    document.documentElement.style.setProperty('--bg-primary', isDark ? '#121212' : '#ffffff');
+    document.documentElement.style.setProperty('--bg-secondary', isDark ? '#1a1a1a' : '#f0f0f0');
+    document.documentElement.style.setProperty('--text-primary', isDark ? '#ffffff' : '#121212');
+    document.documentElement.style.setProperty('--text-secondary', isDark ? '#e0e0e0' : '#2a2a2a');
+    document.documentElement.style.setProperty('--border-color', isDark ? '#444444' : '#dddddd');
   };
 
   const toggleTheme = () => {
@@ -63,15 +66,19 @@ function ThemeToggle() {
     <div className="fixed top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 z-50">
       <button
         onClick={toggleTheme}
-        className="relative p-0.5 sm:p-1 rounded-full w-10 sm:w-12 md:w-14 h-5 sm:h-6 md:h-7 flex items-center justify-between transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        style={{
-          backgroundColor: isDarkMode ? '#1a1a1a' : '#f0f0f0',
-          border: `1px solid ${isDarkMode ? '#444444' : '#dddddd'}`
-        }}
+        className={`
+          relative p-0.5 sm:p-1 rounded-full 
+          w-10 sm:w-12 md:w-14 h-5 sm:h-6 md:h-7 
+          flex items-center justify-between
+          transition-colors duration-300
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+          ${isDarkMode ? 'bg-[#1a1a1a] border-[#444444]' : 'bg-[#f0f0f0] border-[#dddddd]'}
+          border
+        `}
         aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
         disabled={isAnimating}
       >
-        {/* Moon icon (dark mode) - positioned at the start */}
+        {/* Moon icon */}
         <div className="flex items-center justify-center h-full pl-1 sm:pl-1.5 z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -81,27 +88,31 @@ function ThemeToggle() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-2.5 sm:w-3 md:w-3.5 h-2.5 sm:h-3 md:h-3.5 transition-opacity duration-300"
-            style={{
-              opacity: isDarkMode ? 1 : 0,
-              color: '#f0c420'
-            }}
+            className={`
+              w-2.5 sm:w-3 md:w-3.5 h-2.5 sm:h-3 md:h-3.5
+              transition-opacity duration-300
+              text-[#f0c420]
+              ${isDarkMode ? 'opacity-100' : 'opacity-0'}
+            `}
           >
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </div>
         
-        {/* Toggle knob with correct positioning */}
+        {/* Toggle knob */}
         <span
-          className="absolute rounded-full w-4 sm:w-4.5 md:w-5 h-4 sm:h-4.5 md:h-5 shadow-md transition-transform duration-300 ease-in-out"
+          className={`
+            absolute rounded-full 
+            w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6
+            shadow-md transition-all duration-300 ease-in-out
+            ${isDarkMode ? 'bg-white translate-x-0' : 'bg-[#121212] translate-x-[100%]'}
+          `}
           style={{
-            backgroundColor: isDarkMode ? '#ffffff' : '#121212',
-            transform: isDarkMode ? 'translateX(0)' : 'translateX(5px) sm:translateX(6px) md:translateX(7px)',
-            left: isDarkMode ? '2px sm:2.5px md:3px' : '45% sm:48% md:50%',
+            left: '2px',
           }}
         />
         
-        {/* Sun icon (light mode) - positioned at the end */}
+        {/* Sun icon */}
         <div className="flex items-center justify-center h-full pr-1 sm:pr-1.5 z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,11 +122,12 @@ function ThemeToggle() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-2.5 sm:w-3 md:w-3.5 h-2.5 sm:h-3 md:h-3.5 transition-opacity duration-300"
-            style={{
-              opacity: isDarkMode ? 0 : 1,
-              color: '#f0c420'
-            }}
+            className={`
+              w-2.5 sm:w-3 md:w-3.5 h-2.5 sm:h-3 md:h-3.5
+              transition-opacity duration-300
+              text-[#f0c420]
+              ${isDarkMode ? 'opacity-0' : 'opacity-100'}
+            `}
           >
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
