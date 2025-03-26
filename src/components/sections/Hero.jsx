@@ -1,6 +1,7 @@
 // Hero.jsx (ME section)
 import React, { useState, useEffect } from 'react';
-import img3 from '../../assets/images/img3.jpg';
+import img3 from '../../assets/images/dp.jpg';
+import resumePDF from '../../assets/resume/HarshalDhote__Resume.pdf';
 
 const Hero = () => {
   const [showContactInfo, setShowContactInfo] = useState(false);
@@ -57,9 +58,9 @@ const Hero = () => {
               Get In Touch
             </button>
             <a 
-              href="/assets/resume/Harshal_Dhote_Resume.pdf" 
+              href={resumePDF}
               className="px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base bg-transparent border-2 border-[var(--accent-primary)] text-[var(--text-heading)] rounded-lg hover:bg-[var(--button-bg)] hover:border-[var(--button-border-hover)] transition-all duration-300 hover:scale-105" 
-              download
+              download="HarshalDhote_Resume.pdf"
             >
               Download CV
             </a>

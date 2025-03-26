@@ -15,11 +15,11 @@ const ProjectCard = ({ title, period, technologies, description, imageUrl, hasIm
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--button-bg)] opacity-80 z-10"></div>
           
           <div className="h-48 sm:h-64 overflow-hidden">
-            <img 
+            {/* <img 
               src={imageUrl || "/assets/images/project-placeholder.jpg"} 
               alt={title} 
               className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`}
-            />
+            /> */}
           </div>
         </>
       )}

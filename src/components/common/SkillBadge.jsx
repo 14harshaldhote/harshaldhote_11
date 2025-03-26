@@ -1,24 +1,65 @@
-// SkillBadge.jsx
 import React from 'react';
 
-const SkillBadge = ({ name, isVisible, style }) => {
+const SkillBadge = ({ 
+  name, 
+  icon, 
+  isVisible = true, 
+  style = {}, 
+  variant = 'default',
+  size = 'md',
+  className = ''
+}) => {
+  // Variant-based background and text styles
+  const variantStyles = {
+    default: 'bg-[var(--button-bg)] border-[var(--accent-primary)] text-[var(--text-primary)]',
+    outlined: 'bg-transparent border-[var(--accent-primary)] text-[var(--accent-primary)]',
+    soft: 'bg-[var(--accent-primary)] bg-opacity-10 text-[var(--accent-primary)]'
+  };
+
+  // Size-based padding and text styles
+  const sizeStyles = {
+    xs: 'px-2 py-1 text-xs',
+    sm: 'px-2.5 py-1.5 text-sm',
+    md: 'px-3.5 py-2 text-base',
+    lg: 'px-4.5 py-2.5 text-lg'
+  };
+
   return (
-    <div 
-      style={style}
+    <div
+      style={{
+        ...style,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(1rem)'
+      }}
       className={`
-        px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 
-        py-1.5 xs:py-2 sm:py-2.5 md:py-3
-        bg-[var(--bg-secondary)]
-        rounded-full shadow-md 
-        border border-[var(--accent-primary)] border-opacity-10
-        transition-all duration-300
-        hover:shadow-lg hover:-translate-y-1
+        rounded-full 
+        shadow-md
+        border border-opacity-10
+        transition-all 
+        duration-300
+        hover:shadow-lg 
+        hover:-translate-y-1 
+        hover:border-opacity-30
         text-center
-        w-auto max-w-full
+        w-auto
+        min-w-fit
+        flex 
+        items-center 
+        justify-center 
+        gap-2.5
+        m-1
+        ${variantStyles[variant] || variantStyles.default}
+        ${sizeStyles[size] || sizeStyles.md}
+        ${className}
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
       `}
     >
-      <span className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl font-medium text-[var(--text-primary)] whitespace-nowrap overflow-hidden text-ellipsis block">
+      {icon && (
+        <span className="flex-shrink-0 mx-0.5">
+          {icon}
+        </span>
+      )}
+      <span className="font-medium whitespace-nowrap overflow-hidden text-ellipsis px-0.5">
         {name}
       </span>
     </div>
