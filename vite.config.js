@@ -1,21 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
+// Deployed on Vercel at the domain root, so assets resolve from '/'.
 export default defineConfig({
-  base: '/', // Change this to '/' for Vercel deployment
+  base: '/',
   plugins: [react()],
-  optimizeDeps: {
-    include: ['lucide-react'] 
-  },
-  build: {
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'lucide-icons': ['lucide-react']
-        }
-      }
-    }
-  }
-})
+});
