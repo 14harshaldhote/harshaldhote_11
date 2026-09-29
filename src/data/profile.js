@@ -12,12 +12,6 @@ export const profile = {
   github: { handle: '14harshaldhote', url: 'https://github.com/14harshaldhote' },
   linkedin: { handle: 'harshal-dhote', url: 'https://www.linkedin.com/in/harshal-dhote-6929b7211/' },
   resume: '/Harshal_Dhote_Resume.pdf',
-  // Hero card: intentionally personal, no employer details.
-  card: [
-    ['Role', 'Software Engineer'],
-    ['Based in', 'Pune, India'],
-    ['Main stack', 'Java · Spring Boot · MySQL'],
-  ],
 };
 
 export const currentJob = {

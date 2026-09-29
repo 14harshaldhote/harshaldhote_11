@@ -1,5 +1,5 @@
 // Shared building blocks for the hand-drawn system diagrams. Colours come from the
-// theme tokens, so every diagram follows light/dark mode. Sizes are in viewBox units;
+// theme tokens in index.css. Sizes are in viewBox units;
 // the diagrams render at roughly 0.6–0.7× on screen, so text is set large.
 
 export function Arrowhead({ id, className = 'fill-muted' }) {

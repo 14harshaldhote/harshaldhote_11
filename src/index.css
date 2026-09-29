@@ -7,21 +7,19 @@
   .shell {
     @apply mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12;
   }
+
+  /* Hero portrait is a cut-out; fade the edges where the original photo cropped it (right shoulder, bottom). */
+  .portrait-fade {
+    -webkit-mask-image: linear-gradient(to right, #000 72%, transparent), linear-gradient(to bottom, #000 80%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, #000 72%, transparent), linear-gradient(to bottom, #000 80%, transparent);
+    mask-composite: intersect;
+  }
 }
 
 @layer base {
-  /* Colour tokens are RGB channels so Tailwind opacity modifiers (bg-ink/5) work. */
+  /* Colour tokens are RGB channels so Tailwind opacity modifiers (bg-ink/5) work. The site is dark only. */
   :root {
-    --paper: 245 243 238;
-    --surface: 251 250 247;
-    --ink: 20 20 19;
-    --muted: 104 102 96;
-    --rule: 221 217 208;
-    --accent: 196 64 22;
-    color-scheme: light;
-  }
-
-  [data-theme='dark'] {
     --paper: 14 14 13;
     --surface: 22 22 20;
     --ink: 236 234 228;

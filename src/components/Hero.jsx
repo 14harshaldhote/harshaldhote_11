@@ -1,12 +1,12 @@
 import { Download, Github, Linkedin, Mail } from 'lucide-react';
-import photo from '../assets/harshal.jpg';
+import portrait from '../assets/harshal-portrait.webp';
 import { profile } from '../data/profile';
 
 export default function Hero() {
   return (
     <section id="top" aria-label="Introduction" className="shell pb-20 pt-14 md:pb-28 md:pt-24">
       <div className="grid gap-12 md:grid-cols-12 md:gap-10">
-        <div className="md:col-span-7 lg:col-span-8">
+        <div className="md:col-span-7">
           <p className="flex animate-rise items-center gap-2.5 font-mono text-xs uppercase tracking-[0.12em] text-muted">
             <span aria-hidden="true" className="h-1.5 w-1.5 bg-accent" />
             {profile.role} · {profile.location}
@@ -61,31 +61,23 @@ export default function Hero() {
           </div>
         </div>
 
-        <aside className="animate-rise self-end [animation-delay:240ms] md:col-span-5 lg:col-span-4">
-          <div className="overflow-hidden rounded-lg border border-rule bg-surface">
-            <div className="flex items-center gap-4 border-b border-rule p-5">
-              <img
-                src={photo}
-                alt="Portrait of Harshal Dhote"
-                width="64"
-                height="64"
-                className="h-16 w-16 rounded-full object-cover"
-              />
-              <div>
-                <p className="font-medium text-ink">{profile.name}</p>
-                <p className="mt-0.5 font-mono text-xs text-muted">@{profile.github.handle}</p>
-              </div>
-            </div>
-            <dl className="divide-y divide-rule text-sm">
-              {profile.card.map(([term, value]) => (
-                <div key={term} className="flex items-baseline justify-between gap-4 px-5 py-3">
-                  <dt className="shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">{term}</dt>
-                  <dd className="text-right text-ink">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </aside>
+        {/* Negative bottom margin cancels the section padding so the portrait sits on the next section's rule.
+            From md up it also reaches left into the empty space beside the intro (the cut-out's top-left is transparent).
+            The photo ignores pointer events and blocks the context menu, so there is no "Save image", drag or long-press save. */}
+        <div
+          onContextMenu={(event) => event.preventDefault()}
+          className="-mb-20 animate-rise self-end [animation-delay:240ms] md:col-span-5 md:-mb-28"
+        >
+          <img
+            src={portrait}
+            alt="Portrait of Harshal Dhote"
+            width="960"
+            height="956"
+            fetchPriority="high"
+            draggable={false}
+            className="portrait-fade pointer-events-none mx-auto w-full max-w-md select-none [-webkit-touch-callout:none] md:-ml-[18%] md:w-[118%] md:max-w-none"
+          />
+        </div>
       </div>
     </section>
   );

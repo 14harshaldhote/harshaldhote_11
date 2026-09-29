@@ -1,4 +1,4 @@
-import { Download, Moon, Sun } from 'lucide-react';
+import { Download } from 'lucide-react';
 import Monogram from './Monogram';
 import { profile } from '../data/profile';
 import { useActiveSection } from '../hooks/useActiveSection';
@@ -12,9 +12,8 @@ const links = [
 // 'top' is observed too, so scrolling back to the hero clears the highlight.
 const observedIds = ['top', ...links.map((l) => l.id)];
 
-export default function Header({ theme, onToggleTheme }) {
+export default function Header() {
   const active = useActiveSection(observedIds);
-  const isDark = theme === 'dark';
 
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/80 backdrop-blur-md">
@@ -51,24 +50,14 @@ export default function Header({ theme, onToggleTheme }) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-            className="grid h-9 w-9 place-items-center rounded-md text-muted transition-colors hover:bg-ink/5 hover:text-ink"
-          >
-            {isDark ? <Sun size={17} strokeWidth={1.75} /> : <Moon size={17} strokeWidth={1.75} />}
-          </button>
-          <a
-            href={profile.resume}
-            download
-            className="inline-flex h-9 items-center gap-2 rounded-md border border-rule px-3 text-sm text-ink transition-colors hover:border-ink/40"
-          >
-            <Download size={15} strokeWidth={1.75} />
-            <span>Résumé</span>
-          </a>
-        </div>
+        <a
+          href={profile.resume}
+          download
+          className="inline-flex h-9 items-center gap-2 rounded-md border border-rule px-3 text-sm text-ink transition-colors hover:border-ink/40"
+        >
+          <Download size={15} strokeWidth={1.75} />
+          <span>Résumé</span>
+        </a>
       </div>
     </header>
   );

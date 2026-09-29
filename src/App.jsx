@@ -4,11 +4,8 @@ import Work from './components/Work';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { useTheme } from './hooks/useTheme';
 
 export default function App() {
-  const [theme, toggleTheme] = useTheme();
-
   return (
     <>
       <a
@@ -17,7 +14,7 @@ export default function App() {
       >
         Skip to content
       </a>
-      <Header theme={theme} onToggleTheme={toggleTheme} />
+      <Header />
       <main id="main">
         <Hero />
         <Work />
