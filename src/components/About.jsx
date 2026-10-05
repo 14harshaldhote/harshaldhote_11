@@ -3,7 +3,7 @@ import { about, education, toolkit } from '../data/profile';
 
 export default function About() {
   return (
-    <Section id="about" index="02" title="About">
+    <Section id="about" index="03" title="About">
       <div className="max-w-3xl space-y-5 text-[18px] leading-8 text-ink/85 md:text-[20px] md:leading-9">
         {about.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>

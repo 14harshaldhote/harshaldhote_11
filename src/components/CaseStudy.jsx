@@ -1,7 +1,7 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { diagrams } from './diagrams';
 
-export default function CaseStudy({ tag, title, summary, highlights, stack, link, diagram, figure, caption, flip = false }) {
+export default function CaseStudy({ tag, title, summary, highlights, stack, link, post, diagram, figure, caption, flip = false }) {
   const Diagram = diagrams[diagram];
 
   return (
@@ -24,17 +24,28 @@ export default function CaseStudy({ tag, title, summary, highlights, stack, link
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <p className="font-mono text-xs text-muted">{stack.join(' · ')}</p>
-          {link && (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ink underline decoration-rule underline-offset-4 transition-colors hover:decoration-accent"
-            >
-              {link.label}
-              <ArrowUpRight size={15} strokeWidth={1.75} />
-            </a>
-          )}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            {post && (
+              <a
+                href={post.url}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+              >
+                {post.label}
+                <ArrowRight size={15} strokeWidth={1.75} />
+              </a>
+            )}
+            {link && (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-ink underline decoration-rule underline-offset-4 transition-colors hover:decoration-accent"
+              >
+                {link.label}
+                <ArrowUpRight size={15} strokeWidth={1.75} />
+              </a>
+            )}
+          </div>
         </div>
       </div>
 

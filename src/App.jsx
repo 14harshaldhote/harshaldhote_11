@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Work from './components/Work';
+import Blog from './components/Blog';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -18,6 +19,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Work />
+        <Blog />
         <About />
         <Contact />
       </main>

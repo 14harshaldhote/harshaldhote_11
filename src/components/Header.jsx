@@ -5,6 +5,7 @@ import { useActiveSection } from '../hooks/useActiveSection';
 
 const links = [
   { id: 'work', label: 'Work' },
+  { id: 'blog', label: 'Blog' },
   { id: 'about', label: 'About' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -12,13 +13,16 @@ const links = [
 // 'top' is observed too, so scrolling back to the hero clears the highlight.
 const observedIds = ['top', ...links.map((l) => l.id)];
 
-export default function Header() {
-  const active = useActiveSection(observedIds);
+// On a blog post the section links point back to the home page.
+export default function Header({ home = true }) {
+  const onPage = useActiveSection(home ? observedIds : []);
+  const active = home ? onPage : 'blog';
+  const base = home ? '' : '/';
 
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/80 backdrop-blur-md">
       <div className="shell flex h-14 items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-2.5 rounded text-ink">
+        <a href={home ? '#top' : '/'} className="flex items-center gap-2.5 rounded text-ink">
           <Monogram className="h-7 w-7" />
           <span className="text-[15px] font-medium tracking-tight">{profile.name}</span>
         </a>
@@ -30,8 +34,8 @@ export default function Header() {
               return (
                 <li key={id} className="relative flex h-full items-center">
                   <a
-                    href={`#${id}`}
-                    aria-current={isActive ? 'location' : undefined}
+                    href={`${base}#${id}`}
+                    aria-current={isActive ? (home ? 'location' : 'page') : undefined}
                     className={`rounded px-3 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors ${
                       isActive ? 'text-ink' : 'text-muted hover:text-ink'
                     }`}

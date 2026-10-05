@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Section from './Section';
 import CaseStudy from './CaseStudy';
 import { currentJob, otherWork, work } from '../data/profile';
@@ -8,7 +8,7 @@ export default function Work() {
     <Section id="work" index="01" title="Selected work">
       <p className="max-w-2xl text-[17px] leading-relaxed text-muted">
         I’m a {currentJob.role} at <span className="text-ink">{currentJob.company}</span> in {currentJob.location}, since{' '}
-        {currentJob.since}. Two stories from there, and two things I built on my own.
+        {currentJob.since}. Two stories from there, and three things I built on my own.
       </p>
 
       <div className="mt-4 divide-y divide-rule border-b border-rule">
@@ -31,11 +31,15 @@ export default function Work() {
                 {item.link && (
                   <a
                     href={item.link.url}
-                    target="_blank"
-                    rel="noreferrer"
+                    {...(item.link.internal ? {} : { target: '_blank', rel: 'noreferrer' })}
                     className="inline-flex items-center gap-1 text-ink hover:text-accent"
                   >
-                    {item.link.label} <ArrowUpRight size={13} strokeWidth={1.75} />
+                    {item.link.label}{' '}
+                    {item.link.internal ? (
+                      <ArrowRight size={13} strokeWidth={1.75} />
+                    ) : (
+                      <ArrowUpRight size={13} strokeWidth={1.75} />
+                    )}
                   </a>
                 )}
               </div>

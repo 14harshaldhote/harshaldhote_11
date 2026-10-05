@@ -84,9 +84,33 @@ export const work = [
     figure: 4,
     caption: 'rows queued, crunched by workers, progress streamed back',
   },
+  {
+    tag: 'Project · 2026',
+    title: 'LotusLab',
+    summary:
+      'A lotus pond that lives on real weather. It pulls hourly rain, sun and heat for any place, works out how much water the pond gains and loses every hour, and grows the lotus to match. A time slider then moves through months of it instantly.',
+    highlights: [
+      'Every litre booked in a ledger; the water balance closes to 1e-13 m³',
+      'Slider seeks any minute in constant time, about 5 µs a frame',
+      'A year of hourly simulation in 37 ms, with no database',
+    ],
+    stack: ['Python', 'FastAPI', 'NumPy', 'React', 'TypeScript', 'D3'],
+    link: { label: 'Source on GitHub', url: 'https://github.com/14harshaldhote/LotusLab' },
+    post: { label: 'How I built it', url: '/blog/lotuslab/' },
+    diagram: 'pond',
+    figure: 5,
+    caption: 'rain and runoff in, evaporation, seepage and overflow out, every hour',
+  },
 ];
 
 export const otherWork = [
+  {
+    title: 'Chest CT cancer classifier',
+    description:
+      'A VGG16 model that tells adenocarcinoma from normal CT slices, with a DVC pipeline, MLflow tracking, Grad-CAM explanations and a FastAPI service.',
+    year: '2026',
+    link: { label: 'Read the story', url: '/blog/chest-ct-classifier/', internal: true },
+  },
   {
     title: 'ShopSpring',
     description: 'An online store with a Spring Boot API, a React front end and accounts secured with JWT.',
