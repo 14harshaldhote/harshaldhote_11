@@ -41,7 +41,7 @@ function CopyEmail() {
 
 export default function Contact() {
   return (
-    <Section id="contact" index="03" title="Say hello">
+    <Section id="contact" index="04" title="Say hello">
       <p className="max-w-lg text-[17px] leading-relaxed text-muted">
         Have a question, a role, or a system that needs to be right? Email is the best way to reach me.
       </p>
